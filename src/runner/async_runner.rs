@@ -494,11 +494,6 @@ impl AsyncRunner {
 
             let diff = left - right;
 
-            if *limit == 0 {
-                log::warn!(target: "twitchchat::rate_limit", "global rate limit hit while draining '{}'", &channel.name);
-                break;
-            }
-
             // and throttle the global one
             match self.global_rate_limit.consume(diff) {
                 // use the new remaining amount of tokens
